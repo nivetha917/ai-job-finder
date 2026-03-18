@@ -1,8 +1,19 @@
 import json
+import os
 import streamlit as st
 from langchain_core.documents import Document
 from langchain_community.vectorstores import FAISS
-from langchain_ollama import OllamaEmbeddings, OllamaLLM
+from langchain_openai import OpenAIEmbeddings, ChatOpenAI
+
+os.environ["OPENAI_API_KEY"] = st.secrets["OPENAI_API_KEY"]
+
+st.set_page_config(
+    page_title="Visa Job Finder AI",
+    page_icon="🌍",
+)
+
+st.title("🌍 Visa Job Finder AI")
+st.write("Find AI & Data jobs with visa sponsorship using AI")
 
 # Load job dataset
 with open("data_jobs.json") as f:
@@ -22,17 +33,16 @@ for job in jobs:
     docs.append(Document(page_content=content))
 
 # Embeddings
-embeddings = OllamaEmbeddings(model="tinyllama")
+embeddings = OpenAIEmbeddings()
 
 # Vector DB
 vectorstore = FAISS.from_documents(docs, embeddings)
 
 # LLM
-llm = OllamaLLM(model="tinyllama")
-
-# Streamlit UI
-st.title("🤖 AI Job Finder")
-st.write("Search for jobs using AI")
+llm = ChatOpenAI(
+    model="gpt-3.5-turbo",
+    temperature=0
+)
 
 query = st.text_input("Search jobs")
 
@@ -55,9 +65,10 @@ if st.button("Search"):
     Company
     Location
     Visa Sponsorship
+    Reason
     """
 
     response = llm.invoke(prompt)
 
     st.subheader("AI Recommendation")
-    st.write(response)
+    st.write(response.content)
