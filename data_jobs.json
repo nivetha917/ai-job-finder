@@ -1,0 +1,26 @@
+[
+  {
+    "title": "AI Engineer",
+    "company": "TechCorp",
+    "location": "Germany",
+    "visa": "Yes",
+    "skills": "Python, Machine Learning, NLP",
+    "description": "Develop AI systems and machine learning pipelines."
+  },
+  {
+    "title": "Data Engineer",
+    "company": "CloudData",
+    "location": "Netherlands",
+    "visa": "Yes",
+    "skills": "Python, Spark, SQL",
+    "description": "Build scalable data pipelines."
+  },
+  {
+    "title": "Backend Engineer",
+    "company": "StartupX",
+    "location": "India",
+    "visa": "No",
+    "skills": "Java, Microservices",
+    "description": "Develop backend services."
+  }
+]
