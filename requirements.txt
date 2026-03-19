@@ -1,5 +1,6 @@
 streamlit
 langchain
 langchain-community
-langchain-ollama
+langchain-openai>=0.1.0
+openai
 faiss-cpu
